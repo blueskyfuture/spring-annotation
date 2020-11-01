@@ -1,5 +1,6 @@
 package com.atguigu.config;
 
+import com.atguigu.bean.Bus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -77,7 +78,16 @@ public class MainConifgOfAutowired {
 	public Color color(Car car){
 		Color color = new Color();
 		color.setCar(car);
+		Bus bus = getbus();
+		System.out.println("color bus:"+bus);
 		return color;
+	}
+
+	@Bean
+	public Bus getbus(){
+		Bus bus = new Bus();
+		bus.setBusNo(1001);
+		return bus;
 	}
 	
 
