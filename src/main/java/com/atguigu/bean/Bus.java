@@ -10,4 +10,11 @@ public class Bus {
     public void setBusNo(int busNo) {
         this.busNo = busNo;
     }
+
+    @Override
+    public String toString() {
+        return "Bus{" +
+                "busNo=" + busNo +
+                '}';
+    }
 }
