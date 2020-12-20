@@ -24,8 +24,22 @@ public class IOCTest_AOP {
 //		mathCalculator.div(1, 1);
 		MathCalculator mathCalculator = applicationContext.getBean(MathCalculator.class);
 		
-		mathCalculator.div(1, 0);
+		mathCalculator.div(10, 2);
 		
+		applicationContext.close();
+	}
+
+	@Test
+	public void test02(){
+		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfigOfAOP.class);
+
+		//1、不要自己创建对象
+//		MathCalculator mathCalculator = new MathCalculator();
+//		mathCalculator.div(1, 1);
+		MathCalculator mathCalculator = applicationContext.getBean(MathCalculator.class);
+
+		mathCalculator.div(10, 0);
+
 		applicationContext.close();
 	}
 

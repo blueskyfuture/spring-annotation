@@ -3,12 +3,8 @@ package com.atguigu.aop;
 import java.util.Arrays;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 
 /**
  * 切面类
@@ -47,6 +43,15 @@ public class LogAspects {
 	@AfterThrowing(value="pointCut()",throwing="exception")
 	public void logException(JoinPoint joinPoint,Exception exception){
 		System.out.println(""+joinPoint.getSignature().getName()+"异常。。。异常信息：{"+exception+"}");
+	}
+
+	@Around(value = "pointCut()")
+	public Object around(ProceedingJoinPoint joinPoint)throws Throwable{
+		Object ret = null;
+		System.out.println(""+joinPoint.getSignature().getName()+"@Around begin...");
+		ret = joinPoint.proceed();
+		System.out.println(""+joinPoint.getSignature().getName()+"@Around end...");
+		return ret;
 	}
 
 }
